@@ -6,9 +6,9 @@ A library to automatically initialize varibles at *runtime*.
 `test.prop`
 
 ```
-count = 1
-vel = 3.14
-name = abcdef
+intValue = 1
+doubleValue = 3.14
+str = abcdef
 ```
 
 `main.cpp`
