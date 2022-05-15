@@ -167,14 +167,14 @@ long double _initProp<long double>(const char* key) noexcept
 #define _CONCAT_INNER(a, b) a ## b
 #define _CONCAT(a, b) _CONCAT_INNER(a, b)
 
-#define $PropertyFile(path)                 \
+#define PROPERTY_CONFIG(path)               \
     __attribute__((constructor))            \
     void _CONCAT(_propLoad_, __LINE__)()    \
     {                                       \
         _loadPropFile(path);                \
     }                                       \
 
-#define $Property(var) var = _initProp<typeof(var)>(#var)
+#define $(var) var = _initProp<typeof(var)>(#var)
 
 #endif // PROPERTIES_HPP
 
