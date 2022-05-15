@@ -18,11 +18,11 @@ str = abcdef
 
 #include <iostream>
 
-$PropertyFile("test.prop");
+PROPERTY_CONFIG("test.prop");
 
-int $Property(intValue);
-double $Property(doubleValue);
-string $Property(str);
+int $(intValue);
+double $(doubleValue);
+string $(str);
 
 int main()
 {
