@@ -11,10 +11,10 @@ namespace logger
 {
     namespace format
     {
-        void printErrLn() { std::cerr << '\n'; }
+        static inline void printErrLn() { std::cerr << '\n'; }
 
         template<typename T, typename ... Ts>
-        void printErrLn(const T & first, Ts ... tail)
+        static inline void printErrLn(const T & first, Ts ... tail)
         {
             std::cerr << first << ' ';
             printErrLn(tail...);
@@ -30,12 +30,12 @@ namespace logger
 
         #undef COLOR_DEF
 
-        std::string colorString(const std::string & s, const char* color)
+        static inline std::string colorString(const std::string & s, const char* color)
         {
             return color + s + "\033[0m";
         }
 
-        std::string timeString()
+        static inline std::string timeString()
         {
             time_t now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
             tm timeinfo = *std::localtime(&now);
@@ -46,7 +46,7 @@ namespace logger
     }
 
     template<typename ... Ts>
-    void error(Ts ... args)
+    static inline void error(Ts ... args)
     {
         std::cerr << format::colorString("[", format::BLUE);
         std::cerr << format::colorString(" ERROR    ", format::RED);
@@ -56,7 +56,7 @@ namespace logger
     }
 
     template<typename ... Ts>
-    void warning(Ts ... args)
+    static inline void warning(Ts ... args)
     {
         std::cerr << format::colorString("[", format::BLUE);
         std::cerr << format::colorString(" WARNING  ", format::YELLOW);
@@ -66,7 +66,7 @@ namespace logger
     }
 
     template<typename ... Ts>
-    void debug(Ts ... args)
+    static inline void debug(Ts ... args)
     {
         std::cerr << format::colorString("[", format::BLUE);
         std::cerr << format::colorString(" DEBUG    ", format::CYAN);
@@ -76,7 +76,7 @@ namespace logger
     }
 
     template<typename ... Ts>
-    void info(Ts ... args)
+    static inline void info(Ts ... args)
     {
         std::cerr << format::colorString("[", format::BLUE);
         std::cerr << format::colorString(" INFO     ", format::GREEN);
