@@ -7,7 +7,7 @@
 #include <chrono>
 #include <iomanip>
 
-namespace log
+namespace logger
 {
     namespace format
     {
