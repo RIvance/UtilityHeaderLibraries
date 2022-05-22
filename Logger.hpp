@@ -49,7 +49,7 @@ namespace logger
     static inline void error(Ts ... args)
     {
         std::cerr << format::colorString("[", format::BLUE);
-        std::cerr << format::colorString(" ERROR    ", format::RED);
+        std::cerr << format::colorString(" ERROR ", format::RED);
         std::cerr << format::timeString() << " ";
         std::cerr << format::colorString("]", format::BLUE) << " ";
         format::printErrLn(args...);
@@ -59,7 +59,7 @@ namespace logger
     static inline void warning(Ts ... args)
     {
         std::cerr << format::colorString("[", format::BLUE);
-        std::cerr << format::colorString(" WARNING  ", format::YELLOW);
+        std::cerr << format::colorString(" WARN  ", format::YELLOW);
         std::cerr << format::timeString() << " ";
         std::cerr << format::colorString("]", format::BLUE) << " ";
         format::printErrLn(args...);
@@ -69,7 +69,7 @@ namespace logger
     static inline void debug(Ts ... args)
     {
         std::cerr << format::colorString("[", format::BLUE);
-        std::cerr << format::colorString(" DEBUG    ", format::CYAN);
+        std::cerr << format::colorString(" DEBUG ", format::CYAN);
         std::cerr << format::timeString() << " ";
         std::cerr << format::colorString("]", format::BLUE) << " ";
         format::printErrLn(args...);
@@ -79,7 +79,7 @@ namespace logger
     static inline void info(Ts ... args)
     {
         std::cerr << format::colorString("[", format::BLUE);
-        std::cerr << format::colorString(" INFO     ", format::GREEN);
+        std::cerr << format::colorString(" INFO  ", format::GREEN);
         std::cerr << format::timeString() << " ";
         std::cerr << format::colorString("]", format::BLUE) << " ";
         format::printErrLn(args...);
