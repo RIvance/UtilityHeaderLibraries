@@ -69,7 +69,7 @@ void _loadPropFile(const char* path) noexcept
     std::ifstream file(path);
     string line;
     while (std::getline(file, line)) {
-        if (!trim(line).empty()) {
+        if (line[0] != '#' && !trim(line).empty()) {
             auto pair = split(line, "=");
             if (pair.size() != 2) {
                 exit(0);
@@ -88,8 +88,12 @@ static inline string _findProp(const char* key)
         std::cerr << "Unable to find property `" << key << "`";
         std::cerr << std::endl;
         exit(-1);
+    } else {
+        auto value = entry->second;
+        std::cout << "Property { key: " << key << ", value: " << value << " }";
+        std::cout << std::endl;
+        return value;
     }
-    return entry->second;
 }
 
 template <typename T>
