@@ -66,7 +66,7 @@ static inline std::vector<string> split(const string & str, const string & delim
     return tokens;
 }
 
-void _loadPropFile(const char* path) noexcept
+static inline void _loadPropFile(const char* path) noexcept
 {
     std::ifstream file(path);
     string line;
@@ -97,68 +97,68 @@ static inline string _findProp(const char* key)
 }
 
 template <typename T>
-T _initProp(const char* key) noexcept
+static inline T _initProp(const char* key) noexcept
 {
     logger::error("Unsupported property type:", typeid(T).name());
 }
 
 template < >
-bool _initProp<bool>(const char* key) noexcept
+inline bool _initProp<bool>(const char* key) noexcept
 {
     string skey = key;
     return skey == "true" || skey == "True" || skey == "TRUE";
 }
 
 template < >
-string _initProp<string>(const char* key) noexcept
+inline string _initProp<string>(const char* key) noexcept
 {
     return _findProp(key);
 }
 
 template < >
-int8_t _initProp<int8_t>(const char* key) noexcept
+inline int8_t _initProp<int8_t>(const char* key) noexcept
 {
     return (int8_t) std::stoi(_findProp(key));
 }
 
 template < >
-int16_t _initProp<int16_t>(const char* key) noexcept
+inline int16_t _initProp<int16_t>(const char* key) noexcept
 {
     return (int16_t) std::stoi(_findProp(key));
 }
 
 template < >
-int32_t _initProp<int32_t>(const char* key) noexcept
+inline int32_t _initProp<int32_t>(const char* key) noexcept
 {
     return std::stoi(_findProp(key));
 }
 
 template < >
-int64_t _initProp<int64_t>(const char* key) noexcept
+inline int64_t _initProp<int64_t>(const char* key) noexcept
 {
     return std::stoll(_findProp(key));
 }
 
 template < >
-uint16_t _initProp<uint16_t>(const char* key) noexcept
+inline uint16_t _initProp<uint16_t>(const char* key) noexcept
 {
     return (uint16_t) std::stoul(_findProp(key));
 }
 
 template < >
-uint32_t _initProp<uint32_t>(const char* key) noexcept
+inline uint32_t _initProp<uint32_t>(const char* key) noexcept
 {
     return std::stoul(_findProp(key));
 }
 
 template < >
-uint64_t _initProp<uint64_t>(const char* key) noexcept
+inline uint64_t _initProp<uint64_t>(const char* key) noexcept
 {
     return std::stoull(_findProp(key));
 }
 
 template < >
-float _initProp<float>(const char* key) noexcept
+inline float _initProp<float>(const char* key) noexcept
 {
     return std::stof(_findProp(key));
 }
