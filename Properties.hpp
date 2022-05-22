@@ -5,6 +5,8 @@
 #ifndef  PROPERTIES_HPP
 #define  PROPERTIES_HPP
 
+#include "Logger.hpp"
+
 #include <map>
 #include <string>
 #include <vector>
@@ -85,13 +87,11 @@ static inline string _findProp(const char* key)
 {
     std::map<string, string>::iterator entry;
     if ((entry = _properties.find(key)) == _properties.end()) {
-        std::cerr << "Unable to find property `" << key << "`";
-        std::cerr << std::endl;
+        logger::error("Unable to find property:", key);
         exit(-1);
     } else {
         auto value = entry->second;
-        std::cout << "Property { key: " << key << ", value: " << value << " }";
-        std::cout << std::endl;
+        logger::info("Load property:", key, "=", value);
         return value;
     }
 }
@@ -99,7 +99,14 @@ static inline string _findProp(const char* key)
 template <typename T>
 T _initProp(const char* key) noexcept
 {
-    std::cerr << "Unsupported property type of `" << key << "`";
+    logger::error("Unsupported property type:", typeid(T).name());
+}
+
+template < >
+bool _initProp<bool>(const char* key) noexcept
+{
+    string skey = key;
+    return skey == "true" || skey == "True" || skey == "TRUE";
 }
 
 template < >
